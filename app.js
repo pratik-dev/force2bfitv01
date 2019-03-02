@@ -124,7 +124,7 @@ app.post('/webhook/', (req, res) => {
 							} else {
 								price=result.productPrice;
 								product_id=result.productId;
-								if(lang == 'en-us'){
+								if(lang == 'en-us' || lang == 'en-in'){
 								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
 								} else if(lang == 'no') {
 								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
