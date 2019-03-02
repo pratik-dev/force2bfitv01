@@ -92,6 +92,7 @@ var createCartService = (authToken, callback) => {
     }
     else if(response.statusCode == 400){
       callback(undefined, {
+        console.log('createCartService API hit:', response.statusCode)
         basketId: body.fault.arguments.basketIds
         });
     }
