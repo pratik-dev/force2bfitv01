@@ -91,7 +91,9 @@ var createCartService = (authToken, callback) => {
       callback('There was an error connecting to the server');
     }
     else if(response.statusCode == 400){
-      callback('Unable to create the cart');
+      callback(undefined, {
+        basketId: body.fault.arguments.basketIds
+        });
     }
     else if(response.statusCode == 200){
       console.log('createCartService API hit:', response.statusCode)
