@@ -76,7 +76,7 @@ app.post('/webhook/', (req, res) => {
 			// 				}
 		 	// 			break;
 
-			case 'input.welcome': {
+			case 'authCheck': {
 					console.log("Input welcome");
 					if(isDefined(actionName)){
 						sfcc.getAuthTokenService(username, password, (error, result)=> {
