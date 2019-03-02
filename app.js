@@ -99,7 +99,8 @@ app.post('/webhook/', (req, res) => {
 												displayText: text
 												}
 										res.send(messageData);
-// 										} else if(lang == 'no') {
+ 										} 
+//											else if(lang == 'no') {
 // 										text=`Flott, da booker jeg det inn. Siden dette blir din første PT-time er det noe du vil fokusere på, for eksempel styrketrening relatert til sykling?`;
 // 										messageData = {
 // 												speech: text,
