@@ -91,25 +91,24 @@ app.post('/webhook/', (req, res) => {
 										console.log(error);
 									} else {
 										basketId=cartResult.basketId;
-										if(lang == 'en'){
-										console.log("In english");
-										text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
-										messageData = {
-												speech: text,
-												displayText: text
-												}
-										res.send(messageData);
- 										} 
-//											else if(lang == 'no') {
-// 										text=`Flott, da booker jeg det inn. Siden dette blir din første PT-time er det noe du vil fokusere på, for eksempel styrketrening relatert til sykling?`;
-// 										messageData = {
-// 												speech: text,
-// 												displayText: text
-// 												}
-// 										res.send(messageData);
-// 										}								
 										}
 									});
+								if(lang == 'en-us'){
+									console.log("In english");
+									text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
+									messageData = {
+											speech: text,
+											displayText: text
+											}
+									res.send(messageData);
+									} else  {
+									text=`Flott, da booker jeg det inn. Siden dette blir din første PT-time er det noe du vil fokusere på, for eksempel styrketrening relatert til sykling?`;
+									messageData = {
+											speech: text,
+											displayText: text
+											}
+									res.send(messageData);
+									}		
 							     	}
 						   	});
  						}
@@ -117,29 +116,29 @@ app.post('/webhook/', (req, res) => {
 		 			break;
 
 		case 'checkCosten': {
-		 					console.log('In check cost of product');
-		 			 		if(isDefined(actionName)){
-		 			 		sfcc.getProductDetailsService(productName, (error, result)=> {
-		 							if(error){
-		 								console.log(error);
-		 							} else {
-		 								price=result.productPrice;
-										product_id=result.productId;
-										if(lang == 'en'){
-										text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
-										} else if(lang == 'no') {
-										text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
+					console.log('In check cost of product');
+					if(isDefined(actionName)){
+					sfcc.getProductDetailsService(productName, (error, result)=> {
+							if(error){
+								console.log(error);
+							} else {
+								price=result.productPrice;
+								product_id=result.productId;
+								if(lang == 'en-us'){
+								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
+								} else if(lang == 'no') {
+								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
+								}
+								messageData = {
+										speech: text,
+										displayText: text
 										}
-										messageData = {
-												speech: text,
-												displayText: text
-												}
-										res.send(messageData);
-		 										}
-		 						   	});
-		 							}
-		 				 	}
-		 				 	break;
+								res.send(messageData);
+								}
+							});
+						}
+					}
+					break;
 
 		 case 'setShipment': {
 			 		console.log("In setShipment");
@@ -154,6 +153,16 @@ app.post('/webhook/', (req, res) => {
 								console.log(error);
 							} else {
 								console.log(result.responseCode);
+								if(lang == 'en-us'){
+								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
+								} else if(lang == 'no') {
+								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
+								}
+								messageData = {
+										speech: text,
+										displayText: text
+										}
+								res.send(messageData);
 								   }
 							});
 						      }
