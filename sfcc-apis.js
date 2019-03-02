@@ -35,9 +35,7 @@ var getAuthTokenService = (username, password, callback) =>{
       callback(undefined, {
         token: value.substr(7,value.length),
         customer_id: body.customer_id,
-        email: body.email,
-        first_name: body.first_name,
-        last_name: body.last_name
+        first_name: body.first_name
         });
       }
   });
@@ -48,7 +46,7 @@ var getProductDetailsService = (productName, callback) => {
 
         console.log('Getting product details API hit');
         request({
-          url: `https://capgemini01-alliance-prtnr-eu06-dw.demandware.net/s/CapCafe/dw/shop/v18_3/product_search?q=${productName}&client_id=e4bd2b6d-1567-475d-9eb2-b2c86a37a560`,
+          url: `https://capgemini01-alliance-prtnr-eu06-dw.demandware.net/s/CapCafe/dw/shop/v18_3/products/(${productName})?expand=,prices&client_id=e4bd2b6d-1567-475d-9eb2-b2c86a37a560`,
           method: 'GET',
           headers: {
            "content-type": "application/json"
@@ -67,7 +65,8 @@ var getProductDetailsService = (productName, callback) => {
           else if(response.statusCode == 200){
             console.log("Product by name API hit:", response.statusCode);
             callback(undefined, {
-              productId: body.hits[0].product_id
+              productPrice: body.data[0].price,
+              productId: body.data[0].id
               });
            }
        });
@@ -92,10 +91,7 @@ var createCartService = (authToken, callback) => {
       callback('There was an error connecting to the server');
     }
     else if(response.statusCode == 400){
-      console.log('Cart already present');
-      callback(undefined, {
-        basketId: body.fault.arguments.basketIds
-        });
+      callback('Unable to create the cart');
     }
     else if(response.statusCode == 200){
       console.log('createCartService API hit:', response.statusCode)
@@ -117,10 +113,6 @@ var addProductsToCart = (authToken, product_id, basket_id, callback) => {
           {
             "product_id" : product_id,
             "quantity": qty
-          },
-          {  
-            "product_id":"shoes_003-1",
-            "quantity":qty
           }
       ],
     timeout: 40000,
@@ -314,9 +306,6 @@ var placeOrderService = (authToken, basket_id, callback) => {
           }
      });
 };
-
-
-
 
 var updatePaymentService = (authToken, order_no, payment_id, total, callback) => {
 
