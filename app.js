@@ -49,7 +49,7 @@ app.get('/', function (req, res) {
 
 app.post('/webhook/', (req, res) => {
 
-	//console.log(JSON.stringify(req.body));
+	console.log(req.body.lang);
 	var data = req.body;
 	var lang = req.body.lang;
 	var actionName = req.body.result.action;
@@ -92,20 +92,21 @@ app.post('/webhook/', (req, res) => {
 									} else {
 										basketId=cartResult.basketId;
 										if(lang == 'en'){
+										console.log("In english");
 										text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
 										messageData = {
 												speech: text,
 												displayText: text
 												}
 										res.send(messageData);
-										} else if(lang == 'no') {
-										text=`Flott, da booker jeg det inn. Siden dette blir din første PT-time er det noe du vil fokusere på, for eksempel styrketrening relatert til sykling?`;
-										messageData = {
-												speech: text,
-												displayText: text
-												}
-										res.send(messageData);
-										}								
+// 										} else if(lang == 'no') {
+// 										text=`Flott, da booker jeg det inn. Siden dette blir din første PT-time er det noe du vil fokusere på, for eksempel styrketrening relatert til sykling?`;
+// 										messageData = {
+// 												speech: text,
+// 												displayText: text
+// 												}
+// 										res.send(messageData);
+// 										}								
 										}
 									});
 							     	}
