@@ -95,7 +95,7 @@ app.post('/webhook/', (req, res) => {
 									});
 								if(lang == 'en-us'){
 									console.log("In english");
-									text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
+									text=`Good, I will set that up. Since this is your first PT hour is there anything you would like to focus on, for example exercises specific to cycling?`;
 									messageData = {
 											speech: text,
 											displayText: text
@@ -126,7 +126,7 @@ app.post('/webhook/', (req, res) => {
 								product_id=result.productId;
 								if(lang == 'en-us' || lang == 'en-in'){
 								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
-								} else if(lang == 'no') {
+								} else {
 								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
 								}
 								messageData = {
@@ -154,16 +154,16 @@ app.post('/webhook/', (req, res) => {
 							} else {
 								console.log(result.responseCode);
 								if(lang == 'en-us'){
-								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
-								} else if(lang == 'no') {
-								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
+								text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
+								} else {
+								text=`Glimrende. Thomas Thomassen vil møte deg i resepsjonen klokken 17:00 og jeg gir han beskjed om at du ønsker å fokusere styrketrening relatert til sykling. Forresten, kunne du tenke deg en proteinshake etter treningen?`;
 								}
 								messageData = {
 										speech: text,
 										displayText: text
 										}
 								res.send(messageData);
-								   }
+								}
 							});
 						      }
 						});
@@ -184,7 +184,17 @@ app.post('/webhook/', (req, res) => {
 			 								console.log(error);
 			 							} else {
 			 								console.log(result.responseCode);
-			 								   }
+											if(lang == 'en-us'){
+											text=`Perfect, I confirm the order. Any thing else I can do for you?`;
+											} else {
+											text=`Perfekt, er det noe annet jeg kan gjøre for deg?`;
+											}
+												messageData = {
+														speech: text,
+														displayText: text
+														}
+												res.send(messageData);
+			 								 }
 			 							});
 								  }
 							});
@@ -210,6 +220,16 @@ app.post('/webhook/', (req, res) => {
 							} else {
 								payment_id=result.payment_id;
 								orderCode=result.code;
+								if(lang == 'en-us'){
+								text=`Okay, good luck with Thomas tomorrow and watch out for sore legs on Friday`;
+								} else {
+								text=`Ok, lykke til med Thomas i morgen og du bør kanskje forberede deg på stive lår på fredag`;
+								}
+									messageData = {
+											speech: text,
+											displayText: text
+											}
+									res.send(messageData);
 								setTimeout(() => myFunc(token, result.payment_id, result.code), 3000);
 							      }
 							});
