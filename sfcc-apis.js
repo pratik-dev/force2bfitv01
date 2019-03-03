@@ -46,7 +46,7 @@ var getProductDetailsService = (productName, callback) => {
 
         console.log('Getting product details API hit');
         request({
-          url: `https://capgemini01-alliance-prtnr-eu06-dw.demandware.net/s/CapCafe/dw/shop/v18_3/products/(${productName})?expand=,prices&client_id=e4bd2b6d-1567-475d-9eb2-b2c86a37a560`,
+          url: `https://capgemini01-alliance-prtnr-eu06-dw.demandware.net/s/CapCafe/dw/shop/v18_3/products/(proteindrink)?expand=,prices&client_id=e4bd2b6d-1567-475d-9eb2-b2c86a37a560`,
           method: 'GET',
           headers: {
            "content-type": "application/json"
