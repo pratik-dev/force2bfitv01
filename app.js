@@ -180,16 +180,16 @@ app.post('/webhook/', (req, res) => {
 
 		case 'process-order': {
 					console.log("In process-order");
- 					if(isDefined(actionName)){
-						sfcc.addProductsToCart(token, product_id, basketId, (error, result)=> {
+					sfcc.addProductsToCart(token, product_id, basketId, (error, result)=> {
 						if(error){
 							console.log(error);
 						} else {
 							console.log(result.responseCode);
 							console.log('Basket ID----> ', basketId);
 						}
-						)};
- 						sfcc.setShipmentIdService(token, basketId, (error, result)=> {
+					});
+ 					if(isDefined(actionName)){
+						sfcc.setShipmentIdService(token, basketId, (error, result)=> {
 							if(error){
 								console.log(error);
 							} else {
