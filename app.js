@@ -21,7 +21,7 @@ var customer_address_id;
 var product_id;
 var price;
 var messageData = '';
-var deviceAccessToken;
+var orderCode;
 debugger;
 
 
@@ -160,7 +160,7 @@ app.post('/webhook/', (req, res) => {
 								console.log(error);
 							} else {
 								console.log(result.responseCode);
-								if(lang == 'en-us'){
+								if(lang == 'en-us' || lang == 'en-in'){
 								text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
 								} else {
 								text=`Glimrende. Thomas Thomassen vil møte deg i resepsjonen klokken 17:00 og jeg gir han beskjed om at du ønsker å fokusere styrketrening relatert til sykling. Forresten, kunne du tenke deg en proteinshake etter treningen?`;
@@ -199,7 +199,7 @@ app.post('/webhook/', (req, res) => {
 			 								console.log(error);
 			 							} else {
 			 								console.log(result.responseCode);
-											if(lang == 'en-us'){
+											if(lang == 'en-us' || lang == 'en-in'){
 											text=`Perfect, I confirm the order. Any thing else I can do for you?`;
 											} else {
 											text=`Perfekt, er det noe annet jeg kan gjøre for deg?`;
@@ -235,7 +235,7 @@ app.post('/webhook/', (req, res) => {
 							} else {
 								payment_id=result.payment_id;
 								orderCode=result.code;
-								if(lang == 'en-us'){
+								if(lang == 'en-us' || lang == 'en-in'){
 								text=`Okay, good luck with Thomas tomorrow and watch out for sore legs on Friday`;
 								} else {
 								text=`Ok, lykke til med Thomas i morgen og du bør kanskje forberede deg på stive lår på fredag`;
