@@ -55,7 +55,6 @@ var getProductDetailsService = (productName, callback) => {
           rejectUnauthorized: false,
           json: true
           }, (error, response, body) => {
-
           if(error){
             callback('There was an error connecting to the server');
           }
