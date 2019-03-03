@@ -160,6 +160,14 @@ app.post('/webhook/', (req, res) => {
 								console.log(error);
 							} else {
 								console.log(result.responseCode);
+								sfcc.addProductsToCart(token, product_id, basketId, (error, result)=> {
+								if(error){
+									console.log(error);
+								} else {
+									console.log(result.responseCode);
+									console.log('Basket ID----> ', basketId);
+								}
+								});
 								if(lang == 'en-us' || lang == 'en-in'){
 								text=`Great. Thomas Thomassen will meet you at 17:00 in the reception area and I will let him know that you want to increase your strength in terms on cycling. By the way would you like to purchase a protein shake for after you work out?`;
 								} else {
@@ -180,15 +188,7 @@ app.post('/webhook/', (req, res) => {
 
 		case 'process-order': {
 					console.log("In process-order");
-					sfcc.addProductsToCart(token, product_id, basketId, (error, result)=> {
-						if(error){
-							console.log(error);
-						} else {
-							console.log(result.responseCode);
-							console.log('Basket ID----> ', basketId);
-						}
-					});
- 					if(isDefined(actionName)){
+					if(isDefined(actionName)){
 						sfcc.setShipmentIdService(token, basketId, (error, result)=> {
 							if(error){
 								console.log(error);
