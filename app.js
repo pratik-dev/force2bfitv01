@@ -127,15 +127,20 @@ app.post('/webhook/', (req, res) => {
 								product_id=result.productId;
 								if(lang == 'en-us' || lang == 'en-in'){
 								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
+								messageData = {
+										speech: text,
+										displayText: text
+										}
+								res.send(messageData);
 								} else {
 								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
-								}
 								messageData = {
 										speech: text,
 										displayText: text
 										}
 								res.send(messageData);
 								}
+							}
 							});
 						}
 					}
