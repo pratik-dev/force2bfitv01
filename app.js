@@ -19,6 +19,7 @@ var orderTotal;
 var customerName;
 var customer_address_id;
 var product_id;
+var price;
 var messageData = '';
 var deviceAccessToken;
 debugger;
