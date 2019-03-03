@@ -117,6 +117,7 @@ app.post('/webhook/', (req, res) => {
 
 		case 'checkCosten': {
 					console.log('In check cost of product');
+					var productName= 'proteindrink';
 					if(isDefined(actionName)){
 					sfcc.getProductDetailsService(productName, (error, result)=> {
 							if(error){
