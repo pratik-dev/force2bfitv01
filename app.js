@@ -127,6 +127,7 @@ app.post('/webhook/', (req, res) => {
 								price=result.productPrice;
 								product_id=result.productId;
 								if(lang == 'en-us' || lang == 'en-in'){
+									console.log('Inside english');
 								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
 								messageData = {
 										speech: text,
@@ -134,6 +135,7 @@ app.post('/webhook/', (req, res) => {
 										}
 								res.send(messageData);
 								} else {
+									console.log('Inside Norway');
 								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
 								messageData = {
 										speech: text,
