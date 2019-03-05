@@ -58,25 +58,6 @@ app.post('/webhook/', (req, res) => {
  	var message = req.body.result.resolvedQuery;
 	switch (actionName) {
 
-			// case 'check_sign_in': {
-		 	// 			console.log('In check_sign_in');
-		 	// 				if(isDefined(actionName)){
-			// 					messageData = {
-			// 						"data": {
-			// 							"google": {
-			// 							"expectUserResponse": true,
-			// 							"systemIntent": {
-			// 							"intent": "actions.intent.SIGN_IN",
-			// 							"data": {}
-			// 							         }
-			// 							       }
-			// 							 }
-			// 						}
-			// 					res.send(messageData);
-			// 				     }
-			// 				}
-		 	// 			break;
-
 			case 'authCheck': {
 					console.log("Input welcome");
 					if(isDefined(actionName)){
@@ -128,7 +109,7 @@ app.post('/webhook/', (req, res) => {
 								product_id=result.productId;
 								if(lang == 'en-us' || lang == 'en-in'){
 									console.log('Inside english');
-								text=`It costs ${price} Norwegian krone and we will invoice it through your subscription`;
+								text=`It costs ${price} kroner and we will invoice it through your subscription`;
 								messageData = {
 										speech: text,
 										displayText: text
@@ -136,7 +117,7 @@ app.post('/webhook/', (req, res) => {
 								res.send(messageData);
 								} else {
 									console.log('Inside Norway');
-								text=`Den koster ${price} Norwegian krone og villegge på den månedlige fakturaendin`;
+								text=`Den koster ${price} kroner og villegge på den månedlige fakturaendin`;
 								messageData = {
 										speech: text,
 										displayText: text
